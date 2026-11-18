@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Wang Long.  All rights reserved.',
   author: 'Wang Long',
-  headerTitle: '王龙技术博客',
+  headerTitle: '',
   description: '记录个人对技术的理解和开发过程中遇到的问题，欢迎了解更多。',
   language: 'zh-cn',
   theme: 'system', // system, dark or light

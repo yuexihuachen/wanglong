@@ -37,7 +37,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
       <nav className="flex justify-between">
         {!prevPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
+            上一页
           </button>
         )}
         {prevPage && (
@@ -45,7 +45,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
             href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
             rel="prev"
           >
-            Previous
+            上一页
           </Link>
         )}
         <span>
@@ -53,12 +53,12 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
         </span>
         {!nextPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
+            下一页
           </button>
         )}
         {nextPage && (
-          <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
+          <Link href={`${!basePath?'/blog':`/${basePath}`}/page/${currentPage + 1}`} rel="next">
+            下一页
           </Link>
         )}
       </nav>
