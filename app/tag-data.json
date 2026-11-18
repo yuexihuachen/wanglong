@@ -2,7 +2,9 @@
   "markdown": 1,
   "next-js": 2,
   "guide": 2,
-  "tailwind": 2,
+  "nextjs": 1,
+  "tailwind": 3,
+  "mdx": 1,
   "images": 1,
   "reflection": 1,
   "feature": 1
