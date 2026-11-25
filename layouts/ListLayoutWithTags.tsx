@@ -57,7 +57,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
           </button>
         )}
         {nextPage && (
-          <Link href={`${!basePath?'/blog':`/${basePath}`}/page/${currentPage + 1}`} rel="next">
+          <Link href={`${!basePath ? '/blog' : `/${basePath}`}/page/${currentPage + 1}`} rel="next">
             下一页
           </Link>
         )}
@@ -80,7 +80,7 @@ export default function ListLayoutWithTags({
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
-    <>
+    <div className="mx-auto w-full max-w-4xl px-5 py-12 lg:px-8 lg:py-16">
       <div>
         <div className="pt-6 pb-6">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
@@ -146,7 +146,9 @@ export default function ListLayoutWithTags({
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                            {tags?.map((tag) => (
+                              <Tag key={tag} text={tag} />
+                            ))}
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
@@ -164,6 +166,6 @@ export default function ListLayoutWithTags({
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
