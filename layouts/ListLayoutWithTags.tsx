@@ -79,93 +79,89 @@ export default function ListLayoutWithTags({
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
+  console.log(decodeURI(pathname.split('/tags/')[1]))
+
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 py-12 lg:px-8 lg:py-16">
-      <div>
-        <div className="pt-6 pb-6">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            {title}
-          </h1>
+    <div className="page-enter mx-auto w-full max-w-5xl px-5 py-12 lg:px-8 lg:py-16">
+      <header className="hairline border-b pb-8">
+        <p className="mono-meta mb-4">TAGS / 标签</p>
+        <h1 className="page-title">按标签找到一篇文字</h1>
+        <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[var(--muted)]">
+          业精于勤，荒于嬉；行成于思，毁于随。
+        </p>
+      </header>
+
+      <section className="border-b border-[var(--line)] py-8">
+        <div className="mb-5 flex items-center justify-between">
+          <p className="mono-meta">全部主题 · {tagCounts.length}</p>
         </div>
-        <div className="flex sm:space-x-24">
-          <div className="hidden h-full max-h-screen max-w-[280px] min-w-[280px] flex-wrap overflow-auto rounded-sm bg-gray-50 pt-5 shadow-md sm:flex dark:bg-gray-900/70 dark:shadow-gray-800/40">
-            <div className="px-6 py-4">
-              {pathname.startsWith('/blog') ? (
-                <h3 className="text-primary-500 font-bold uppercase">所有文章</h3>
-              ) : (
-                <Link
-                  href={`/blog`}
-                  className="hover:text-primary-500 dark:hover:text-primary-500 font-bold text-gray-700 uppercase dark:text-gray-300"
-                >
-                  所有文章
-                </Link>
-              )}
-              <ul>
-                {sortedTags.map((t) => {
-                  return (
-                    <li key={t} className="my-3">
-                      {decodeURI(pathname.split('/tags/')[1]) === `${slug(t)}/` ? (
-                        <h3 className="text-primary-600 inline px-3 py-2 text-sm font-bold uppercase">
-                          {`${t} (${tagCounts[t]})`}
-                        </h3>
-                      ) : (
-                        <Link
-                          href={`/tags/${slug(t)}`}
-                          className="hover:text-primary-500 dark:hover:text-primary-500 px-3 py-2 text-sm font-medium text-gray-500 uppercase dark:text-gray-300"
-                          aria-label={`View posts tagged ${t}`}
-                        >
-                          {`${t} (${tagCounts[t]})`}
-                        </Link>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            key={0}
+            href={`/tags/`}
+            className={`chip ${'/tags/' === pathname ? 'active' : ''}`}
+          >
+            <span className="tag-dot" aria-hidden="true" />
+            所有文章
+            <span className="opacity-60">{posts.length}</span>
+          </Link>
+          {sortedTags.map((name, index) => (
+            <Link
+              key={index}
+              href={`/tags/${slug(name)}`}
+              className={`chip ${decodeURI(pathname.split('/tags/')[1]) === `${slug(name)}/` ? 'active' : ''}`}
+            >
+              <span className="tag-dot" aria-hidden="true" />
+              {name}
+              <span className="opacity-60">{tagCounts[name]}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="pt-10">
+        <div className="mb-2 flex items-end justify-between gap-4">
           <div>
-            <ul>
-              {displayPosts.map((post) => {
-                const { path, date, title, summary, tags } = post
-                return (
-                  <li key={path} className="py-5">
-                    <article className="flex flex-col space-y-2 xl:space-y-0">
-                      <dl>
-                        <dt className="sr-only">Published on</dt>
-                        <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                          <time dateTime={date} suppressHydrationWarning>
-                            {formatDate(date, siteMetadata.locale)}
-                          </time>
-                        </dd>
-                      </dl>
-                      <div className="space-y-3">
-                        <div>
-                          <h2 className="text-2xl leading-8 font-bold tracking-tight">
-                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags?.map((tag) => (
-                              <Tag key={tag} text={tag} />
-                            ))}
-                          </div>
-                        </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
-                        </div>
-                      </div>
-                    </article>
-                  </li>
-                )
-              })}
-            </ul>
-            {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-            )}
+            <p className="mono-meta mb-2">FILTERED / 筛选结果</p>
+            <h2 className="serif-display text-3xl font-extrabold text-[var(--ink)]">
+              <>全部 {posts.length} 篇</>
+            </h2>
           </div>
         </div>
-      </div>
+        <div className="mt-8">
+          {displayPosts.map((post, index) => {
+            const { path, date, title, summary, tags } = post
+            return (
+              <Link
+                key={index}
+                href={`/post/${post.slug}`}
+                className="post-row md:grid-cols-[120px_minmax(0,1fr)_86px] md:items-center"
+              >
+                <div className="mono-meta mt-1 hidden md:block">{post.date.slice(0, 10)}</div>
+                <div className="min-w-0">
+                  <div className="mono-meta mb-2 md:hidden">{post.date}</div>
+                  <h3 className="serif-display text-xl leading-snug font-bold text-[var(--ink)] md:text-2xl">
+                    {post.title}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[var(--muted)]">
+                    <span className="text-[var(--accent)]">{post.tags[0]}</span>
+                    {post.tags.slice(1).map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="mono-meta hidden text-right md:block">
+                  {index != null ? String(index + 1).padStart(2, '0') : '阅读'}
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+
+        {pagination && pagination.totalPages > 1 && (
+          <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        )}
+      </section>
     </div>
   )
 }

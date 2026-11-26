@@ -8,6 +8,41 @@
   --font-serif: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   --font-mono: "SF Mono", "Cascadia Code", ui-monospace, Menlo, Consolas,
     monospace;
+
+     --color-primary-50: oklch(97.1% 0.013 17.38);
+  --color-primary-100: oklch(93.6% 0.032 17.717);
+  --color-primary-200: oklch(88.5% 0.062 18.334);
+  --color-primary-300: oklch(80.8% 0.114 19.571);
+  --color-primary-400: oklch(70.4% 0.191 22.216);
+  --color-primary-500: oklch(50.5% 0.213 27.518);
+  --color-primary-600: oklch(44.4% 0.177 26.899);
+  --color-primary-700: oklch(39.6% 0.141 25.723);
+  --color-primary-800: oklch(44.4% 0.177 26.899);
+  --color-primary-900: oklch(39.6% 0.141 25.723);
+  --color-primary-950: oklch(25.8% 0.092 26.042);
+
+  --color-gray-50: oklch(0.985 0.002 247.839);
+  --color-gray-100: oklch(0.967 0.003 264.542);
+  --color-gray-200: oklch(0.928 0.006 264.531);
+  --color-gray-300: oklch(0.872 0.01 258.338);
+  --color-gray-400: oklch(0.707 0.022 261.325);
+  --color-gray-500: oklch(0.551 0.027 264.364);
+  --color-gray-600: oklch(0.446 0.03 256.802);
+  --color-gray-700: oklch(0.373 0.034 259.733);
+  --color-gray-800: oklch(0.278 0.033 256.848);
+  --color-gray-900: oklch(0.21 0.034 264.665);
+  --color-gray-950: oklch(0.13 0.028 261.692);
+
+  /* Line heights */
+  --line-height-11: 2.75rem;
+  --line-height-12: 3rem;
+  --line-height-13: 3.25rem;
+  --line-height-14: 3.5rem;
+
+  /* Z-index values */
+  --z-60: 60;
+  --z-70: 70;
+  --z-80: 80;
 }
 
 :root {
@@ -23,6 +58,7 @@
   --line: #e4dbcb;
   --line-strong: #cfc3ae;
   --accent: #c93f24;
+  --hairline-strong: #d6d3d1;
   --accent-soft: #f9e0d6;
   --accent-strong: #f26a4c;
   --green: #246c4c;
@@ -47,6 +83,7 @@ html.dark {
   --line: #302b22;
   --line-strong: #4b4436;
   --accent: #ff795c;
+  --hairline-strong: #44403c;
   --accent-soft: #4a251c;
   --accent-strong: #ff8f74;
   --green: #8fd7aa;
@@ -94,7 +131,26 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  
 }
+
+* {
+    scroll-behavior: smooth
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--hairline-strong)
+}
+
+::-webkit-scrollbar-track {
+    background: 0 0
+}
+
 
 button,
 a {
