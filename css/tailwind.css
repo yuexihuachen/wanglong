@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin "@tailwindcss/forms";
+@plugin '@tailwindcss/typography';
+@source '../node_modules/pliny';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -9,7 +12,7 @@
   --font-mono: "SF Mono", "Cascadia Code", ui-monospace, Menlo, Consolas,
     monospace;
 
-     --color-primary-50: oklch(97.1% 0.013 17.38);
+  --color-primary-50: oklch(97.1% 0.013 17.38);
   --color-primary-100: oklch(93.6% 0.032 17.717);
   --color-primary-200: oklch(88.5% 0.062 18.334);
   --color-primary-300: oklch(80.8% 0.114 19.571);
@@ -560,4 +563,121 @@ a {
   border-radius: 999px;
   background: var(--accent);
   box-shadow: 0 0 0 1px var(--accent);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  a,
+  button {
+    outline-color: var(--color-primary-500);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid;
+    border-radius: var(--radius-sm);
+    outline-color: var(--color-primary-500);
+  }
+}
+
+@layer utilities {
+  .prose {
+    & a {
+      color: var(--color-primary-500);
+      &:hover {
+        color: var(--color-primary-600);
+      }
+      & code {
+        color: var(--color-primary-400);
+      }
+    }
+    & :where(h1, h2) {
+      font-weight: 700;
+      letter-spacing: var(--tracking-tight);
+    }
+    & h3 {
+      font-weight: 600;
+    }
+    & :where(code):not(pre code) {
+      color: var(--color-indigo-500);
+    }
+  }
+
+  .prose-invert {
+    & a {
+      color: var(--color-primary-500);
+      &:hover {
+        color: var(--color-primary-400);
+      }
+      & code {
+        color: var(--color-primary-400);
+      }
+    }
+    & :where(h1, h2, h3, h4, h5, h6) {
+      color: var(--color-gray-100);
+    }
+  }
+}
+
+.task-list-item::before {
+  @apply hidden;
+}
+
+.task-list-item {
+  @apply list-none;
+}
+
+.footnotes {
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
+}
+
+.data-footnote-backref {
+  @apply no-underline;
+}
+
+.csl-entry {
+  @apply my-5;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
+}
+
+.katex-display {
+  overflow: auto hidden;
+}
+
+.content-header-link {
+  opacity: 0;
+  margin-left: -24px;
+  padding-right: 4px;
+}
+
+.content-header:hover .content-header-link,
+.content-header-link:hover {
+  opacity: 1;
+}
+
+.linkicon {
+  display: inline-block;
+  vertical-align: middle;
 }

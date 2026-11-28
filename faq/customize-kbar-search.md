@@ -22,7 +22,7 @@ export const SearchProvider = ({ children }) => {
         searchDocumentsPath: 'search.json',
         defaultActions: [
           {
-            id: 'homepage',
+            id: 'homepage1',
             name: 'Homepage',
             keywords: '',
             shortcut: ['h', 'h'],

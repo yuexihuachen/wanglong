@@ -29,7 +29,7 @@ export default async function Page() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href="/about"
-                className="inline-flex h-10 cursor-pointer items-center rounded-full bg-[var(--ink)] px-5 text-sm font-medium text-white! transition-colors hover:bg-[var(--accent)]"
+                className="inline-flex h-10 cursor-pointer items-center rounded-full bg-[var(--ink)] px-5 text-sm font-medium text-[var(--bg)]! transition-colors hover:bg-[var(--accent)]"
               >
                 关于我
               </Link>
@@ -78,7 +78,7 @@ export default async function Page() {
               {posts.slice(0, MAX_DISPLAY).map((post, index) => (
                 <Link
                   key={index}
-                  href={`/post/${post.slug}`}
+                  href={`/blog/${post.slug}`}
                   className="post-row md:grid-cols-[120px_minmax(0,1fr)_86px] md:items-center"
                 >
                   <div className="mono-meta mt-1 hidden md:block">{post.date.slice(0, 10)}</div>

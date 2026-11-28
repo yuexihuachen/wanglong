@@ -134,7 +134,7 @@ export default function ListLayoutWithTags({
             return (
               <Link
                 key={index}
-                href={`/post/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className="post-row md:grid-cols-[120px_minmax(0,1fr)_86px] md:items-center"
               >
                 <div className="mono-meta mt-1 hidden md:block">{post.date.slice(0, 10)}</div>

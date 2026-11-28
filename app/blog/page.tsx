@@ -57,7 +57,7 @@ export default async function BlogPage() {
                 {list.map((post) => (
                   <Link
                     key={post.slug}
-                    href={`/post/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="hairline group relative grid gap-2 border-b border-[var(--line)] py-4 pr-2 transition-colors hover:bg-[var(--panel-soft)] md:grid-cols-[180px_minmax(0,1fr)_auto] md:items-center"
                   >
                     <span className="year-dot" />
